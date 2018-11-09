@@ -1,0 +1,26 @@
+<!-- list -->
+<ul class="nav" ng-controller="navController">
+    <div ng-repeat="menu in menus | orderBy:'sort'">
+        <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+            <span class="text-info-dker">{{menu.description}}</span>
+        </li>
+        <li ng-repeat="secondMenu in menu.children | orderBy:'sort'">
+            <a href class="auto">
+            <span class="pull-right text-muted">
+                <i class="fa fa-fw fa-angle-right text"></i>
+                <i class="fa fa-fw fa-angle-down text-active"></i>
+            </span>
+                <i class="{{secondMenu.icon}}"></i>
+                <span translate="">{{secondMenu.description}}</span>
+            </a>
+            <ul class="nav nav-sub dk" ng-repeat="thirdMenu in secondMenu.children | orderBy:'sort'">
+                <li ui-sref-active="active">
+                    <a ui-sref="{{thirdMenu.res}}">
+                        <span>{{thirdMenu.description}}</span>
+                    </a>
+                </li>
+            </ul>
+
+        </li>
+    </div>
+</ul>

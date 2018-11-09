@@ -1,0 +1,64 @@
+<div class="wrapper-md" ng-controller="appPublishController">
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    <form name="form" class="form-validation" novalidate>
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-2 m-b">
+            App名称：
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 m-b">
+            <select class="form-control" ng-change="changeClientType()" ng-options="appName.name for appName in appNames" ng-model="appName">
+            </select>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-b">
+            版本号：
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 m-b">
+            <input type="text" class="form-control" ng-model="client.version" required/>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-b">
+            客户端类型：
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 m-b">
+            <select class="form-control" ng-change="changeClientType()" ng-options="appType.name for appType in appTypes" ng-model="appType">
+            </select>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-b" ng-if="appType.type == 0">
+            安卓安装包上传：
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 m-b" ng-show="appType.type == 0">
+            <input class="form-control m-b-sm" type="file" file-model="file">
+            <button class="btn btn-default" ng-click="upload()">上传</button>
+            <label class="">{{url}}</label>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-b" ng-if="appType.type == 1">
+            url链接
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 m-b" ng-if="appType.type == 1">
+            <input type="text" class="form-control" ng-model="client.downloadUrl" required/>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-b">
+            版本说明：
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 m-b">
+            <div text-angular ng-model="client.description" required></div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-b">
+            是否必须更新：
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 m-b">
+            <input type="radio" name="update" value="true" ng-model="client.mustUpdate">是
+            <input type="radio" name="update" value="false" ng-model="client.mustUpdate">否
+        </div>
+
+        <!--<div class="col-lg-2 col-md-2 col-sm-2 m-b" ng-if="appType.type == 0">-->
+            <!--老版本说明：-->
+        <!--</div>-->
+        <!--<div class="col-lg-10 col-md-10 col-sm-10 m-b" ng-if="appType.type == 0">-->
+            <!--<textarea ng-model="client.oldDesc"></textarea>-->
+        <!--</div>-->
+        <div class="col-lg-10 col-md-10 col-sm-10 col-lg-offset-2 col-md-offset-2">
+            <button class="btn btn-success" ng-click="publish()" ng-disabled="form.$invalid">确认发布新版本</button>
+        </div>
+    </div>
+    </form>
+</div>

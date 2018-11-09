@@ -1,0 +1,35 @@
+<div class="container w-xxl w-auto-xs" ng-controller="appPublishSigninController">
+    <img src="img/logo3.png" alt="." height="100px">
+    <a href class="navbar-brand block m-b-md">
+        <span class="hidden-folded m-l-xs" style="color: #63caff">领友科技APP版本管理</span>
+    </a>
+    <div >
+        <div class="text-center">
+            <strong>请填写您的用户名与密码</strong><br><br>
+        </div>
+
+        <form name="form" class="form-validation" ng-submit="login()"  novalidate>
+            <!-- alert -->
+            <div>
+                <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+                <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+            </div>
+            <!-- / alert -->
+            <div class="list-group list-group-sm">
+                <div class="list-group-item">
+                    <div class="input-group">
+                        <span class="input-group-addon no-bg"><i class="icon-user"></i></span>
+                        <input type="text" placeholder="用户名" name="username" class="form-control " ng-model="user.username" required>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="input-group">
+                        <span class="input-group-addon no-bg"><i class="icon-lock"></i></span>
+                        <input type="{{typeState}}" placeholder="请输入密码" name="password" class="form-control" ng-model="user.password">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-lg btn-primary btn-block m-b-sm" >登录</button>
+        </form>
+    </div>
+</div>

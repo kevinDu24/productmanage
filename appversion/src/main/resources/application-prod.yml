@@ -1,0 +1,36 @@
+logging:
+  level:
+    org.springframework.web: DEBUG
+server:
+  port: 8088
+spring:
+  http:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  jpa:
+      database: MYSQL
+      show-sql: true
+      hibernate:
+        #ddl-auto: update
+        ddl-auto: update
+
+  datasource:
+      platform: mysql
+      url: jdbc:mysql://10.10.1.163:3306/appversion?useUnicode=true&characterEncoding=UTF-8
+      username: appmanger
+      password: 123$%ZAQ!
+      driver-class-name: com.mysql.jdbc.Driver
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+file:
+  androidFilePath: /var/www/html/android/
+  requestAndroidFilePath: http://222.73.56.27:5087/android/
+
+appVersionPublishAuth:
+  username: appversionPublish
+  password: versionManage
